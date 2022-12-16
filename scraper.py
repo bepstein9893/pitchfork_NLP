@@ -94,4 +94,4 @@ while True:
     except ConnectionError:
         pass
         
-reviews.to_csv('data/reviews_2.csv', index=False) 
+reviews.to_csv('data/reviews.csv', index=False) 
