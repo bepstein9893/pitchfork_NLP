@@ -63,7 +63,7 @@ def scrape_review_article(url):
        
 options = Options()
 options.add_argument('--headless')
-chromedriver_path = '/Users/benepstein/Desktop/pitchfork/chromedriver'
+chromedriver_path = 'chromedriver'
 driver = webdriver.Chrome(chromedriver_path, options=options)
 
 driver.get('https://pitchfork.com/reviews/albums/')
