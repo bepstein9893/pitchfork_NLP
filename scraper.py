@@ -60,10 +60,10 @@ def scrape_review_article(url):
     article = " ".join([p.get_text() for p in article_body.find_all('p')]).strip()
     return article, score
        
-#options = Options()
-#options.add_argument('--headless')
-#chromedriver_path = '/Users/benepstein/Desktop/pitchfork/chromedriver'
-#driver = webdriver.Chrome(chromedriver_path, options=options)
+options = Options()
+options.add_argument('--headless')
+chromedriver_path = '/Users/benepstein/Desktop/pitchfork/chromedriver'
+driver = webdriver.Chrome(chromedriver_path, options=options)
 
 driver.get('https://pitchfork.com/reviews/albums/')
 scroll_page(driver)
@@ -80,8 +80,8 @@ for review_object in review_objects:
         'best_new': best_new,
         'publish_datetime': publish_datetime,
         'review_link': review_link
-        }, index=[0])
-        reviews = pd.concat([reviews, review], axis=0).reset_index(drop=True)
+        }, index=[0]) 
+    reviews = pd.concat([reviews, review], axis=0).reset_index(drop=True)
 
 #driver.quit()
 
