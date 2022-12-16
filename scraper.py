@@ -34,7 +34,7 @@ def scrape_review_data(review_object):
     album_title = review_title_data.find_element(By.TAG_NAME, 'h2').text
     review_link = core_review_data.get_attribute('href')
     
-    # Meta Review Data (authors, "best new" designation, genres, publish date)
+    # Meta Review Data (authors, 'best new' designation, genres, publish date)
     review_meta_data = review_object.find_element(By.XPATH, 'div')
     if len(review_meta_data.find_elements(By.TAG_NAME, 'ul'))==2:
         genres = ' / '.join([e.text for e in review_meta_data.find_element(By.XPATH, 'ul[1]').find_elements(By.TAG_NAME, 'li')])
@@ -50,15 +50,16 @@ def scrape_review_data(review_object):
 def scrape_review_article(url):
     # Function takes a link to a review and returns the article text, as well as the review score
     page = requests.get(url)
-    soup = BeautifulSoup(page.content, "html.parser")
+    soup = BeautifulSoup(page.content, 'html.parser')
     try: 
-        score = float(soup.find("div", {"class": "ScoreBoxWrapper-cqxrzg hvtCii"}).find('p').get_text())
+        score = float(soup.find('div', {'class': 'ScoreBoxWrapper-cqxrzg hvtCii'}).find('p').get_text())
     except AttributeError: 
-        score = float(soup.find("span", {"class": "score"}).get_text())
-    article_body = soup.find("div", {"class": "ArticlePageChunks-lgZRyR kfMxne"})
-    if not article_body: article_body = soup.find("div", {"class": "contents dropcap"})
-    article = " ".join([p.get_text() for p in article_body.find_all('p')]).strip()
+        score = float(soup.find('span', {'class': 'score'}).get_text())
+    article_body = soup.find('div', {'class': 'ArticlePageChunks-lgZRyR kfMxne'})
+    if not article_body: article_body = soup.find('div', {'class': 'contents dropcap'})
+    article = ' '.join([p.get_text() for p in article_body.find_all('p')]).strip()
     return article, score
+
        
 options = Options()
 options.add_argument('--headless')
@@ -85,7 +86,12 @@ for review_object in review_objects:
 
 #driver.quit()
 
-for url in reviews.review_link:
-    reviews.loc[reviews["review_link"]==url, ['article', 'score']] = scrape_review_article(url)
-    
+while True:
+    try: 
+        for url in reviews[reviews['article'].isna()]['review_link']:
+            reviews.loc[reviews['review_link']==url, ['article', 'score']] = scrape_review_article(url)
+        break
+    except ConnectionError:
+        pass
+        
 reviews.to_csv('data/reviews.csv', index=False) 
