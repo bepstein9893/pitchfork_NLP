@@ -84,7 +84,7 @@ for review_object in review_objects:
         }, index=[0]) 
     reviews = pd.concat([reviews, review], axis=0).reset_index(drop=True)
 
-#driver.quit()
+driver.quit()
 
 while True:
     try: 
