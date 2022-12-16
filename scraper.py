@@ -10,7 +10,7 @@ import time
 import datetime as dt
 import pandas as pd
 
-def scroll_page(driver, y=4000, y_step=4000, duration_limit=600, sleep=2.5):
+def scroll_page(driver, y=4500, y_step=4500, duration_limit=1200, sleep=2.5):
     # y = initial height to scroll to
     # y_step = incremental step to scroll 
     # duration_limit = seconds the process will run for 
@@ -94,4 +94,4 @@ while True:
     except ConnectionError:
         pass
         
-reviews.to_csv('data/reviews.csv', index=False) 
+reviews.to_csv('data/reviews_2.csv', index=False) 
