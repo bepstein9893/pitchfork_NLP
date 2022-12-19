@@ -12,7 +12,8 @@ This project attempts to explore the sentiment of Pitchfork reviews, and how, if
 
 **Exploratory Data Analysis**<br>*(exploratory_sentiment_analysis.ipynb)*
 
-* While the Pitchfork Review Scores appear to be normally distributed around ~7.5 with little variance, there is greater variance in scores within genres. * However, Rock, Experimental, Folk/Country and Jazz appear to have greater median scores, while Rap appears to have a lower median score.
+* While the Pitchfork Review Scores appear to be normally distributed around ~7.5 with little variance, there is greater variance in scores within genres.
+* However, Rock, Experimental, Folk/Country and Jazz appear to have greater median scores, while Rap appears to have a lower median score.
 
 ![image](images/EDA_1.png)
 
