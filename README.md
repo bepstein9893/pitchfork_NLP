@@ -89,6 +89,15 @@ We will also implenent a new feature, which takes into account each authors aver
 
 **Random Forest Regressor**<br>*(sentiment_in_regression.ipynb)*
 
+* We fit 5 folds for each of 20 candidates, totalling 100 fits. 
+* **Best RMSE**: 0.6509594767176896
+* Best Hyperparameters: 
+  * 'n_estimators': 1000
+  * 'min_samples_split': 5
+  * 'min_samples_leaf': 1
+  * 'max_features': 'auto'
+  * 'max_depth': 9
+  * 'bootstrap': True
 
 *Please find an outline of the working directory below:*
 
