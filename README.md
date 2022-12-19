@@ -77,6 +77,12 @@ This project attempts to explore the sentiment of Pitchfork reviews, and how, if
 
 ![image](images/Flair_1.png)
 
+### Findings: Regression
+
+The goal of this regression analysis to generate a high-performing prediction. As each sentiment analysis package had advantages and disadvantages, and some found "plausible" relationships between reviews and ratings, with respect to genres, while others did not (or found "implausible" relationships), we will train and tune the hyperparameters of regressors that are more apt to handle large sets of features and the relationships between them. Namely,
+
+* Rand
+
 *Please find an outline of the working directory below:*
 
 ``` bash
