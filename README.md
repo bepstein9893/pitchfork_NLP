@@ -20,7 +20,14 @@ This project attempts to explore the sentiment of Pitchfork reviews, and how, if
 
 **Sentiment Analysis: NLTK - VADER (Valence Aware Dictionary and sEntiment Reasoner)**<br>*(exploratory_sentiment_analysis.ipynb)*
 
-(DESCRIPTION OF NLTK HERE)
+This package relies on a rules-based sentiment analyzer, attaching a positive or negative rating to specific words and will consider negation.
+
+The shortcoming of this package is that as text gets longer (i.e. a full album review), more neutral words are present and the overall score becomes neutralized. Additionally, because it is rules-based (rather than a pre-trained model), sarcasm, jargon or figures of speech are misinterpreted.
+
+The package returns a negative *(neg)*, neutral *(neu)*, positive *(pos)*, and compound *(comp)* score.
+
+* **neg** + **neu** + **pos** = 1
+* **comp**: value between -1 and +1
 
 * There does not appear to be a strong relationship between VADER scores and Pitchfork Review Score. The lowest Pitchfork Review Scores have very high Compound VADER Scores, which might indicate that the VADER score is not picking up on context / figures of speech / irony in the worst-rated reviews.
 * It appears as if Experimental, Electronic and Jazz albums have lower Negative VADER Scores, which is consistent with them having greater Pitchfork Review Scores.
