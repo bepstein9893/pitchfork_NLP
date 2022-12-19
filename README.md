@@ -78,6 +78,7 @@ This project attempts to explore the sentiment of Pitchfork reviews, and how, if
 ![image](images/Flair_1.png)
 
 ### Findings: Regression
+*(sentiment_in_regression.ipynb)
 
 The goal of this regression analysis to generate a high-performing prediction. As each sentiment analysis package had advantages and disadvantages, and some found "plausible" relationships between reviews and ratings, with respect to genres, while others did not (or found "implausible" relationships), we will train and tune the hyperparameters of regressors that are more apt to handle large sets of features and the relationships between them. Namely,
 
@@ -87,9 +88,9 @@ The goal of this regression analysis to generate a high-performing prediction. A
 
 We will also implenent a new feature, which takes into account each authors average sentiment scores, as to condition each prediction not only on the sentiment of the review, but also on the general sentinment of an author. 
 
-**Random Forest Regressor**<br>*(sentiment_in_regression.ipynb)*
+**Random Forest Regressor**
 
-* We fit 5 folds for each of 20 candidates, totalling 100 fits. 
+*We fit 5 folds for each of 20 candidates, totalling 100 fits.*
 * **Best RMSE**: 0.6509594767176896
 * Best Hyperparameters: 
   * 'n_estimators': 1000
@@ -98,6 +99,46 @@ We will also implenent a new feature, which takes into account each authors aver
   * 'max_features': 'auto'
   * 'max_depth': 9
   * 'bootstrap': True
+
+**XGBoost Regressor**<br>
+
+*We fit 5 folds for each of 20 candidates, totalling 100 fits.*
+* **Best RMSE**: 0.6564412381620857
+* Best Hyperparameters: 
+  * 'n_estimators': 250
+  * 'max_depth': 3
+  * 'learning_rate': 0.1
+  * 'gamma': 0.1
+  * 'colsample_bytree': 0.1
+
+**CatBoost Regressor**<br>*(sentiment_in_regression.ipynb)*
+
+*We fit 5 folds for each of 20 candidates, totalling 100 fits.*
+* **Best RMSE**: 0.64037337380257
+* Best Hyperparameters: 
+  * 'n_estimators': 1000
+  * 'learning_rate': 0.03
+  * 'l2_leaf_reg': 5
+  * 'depth': 2
+  * 'border_count': 50
+
+With each model having faily consistent performance, from an RMSE perspective, we then looked into an ensemble regressor, which yielded the the best performance
+
+**Ensemble Regressor**<br>*(sentiment_in_regression.ipynb)*
+
+* We fit 5 folds for each of 20 candidates, totalling 100 fits.*
+* **Best RMSE**: 0.6388685732071409
+* Best Weights *(Random Forest, XGBoost, CatBoost)*: (1, 1, 2)
+
+**Test, Observations, and Conclusions**<br>*(sentiment_in_regression.ipynb)*
+
+The test RMSE (for the Ensemble Regressor) was **~0.68**, and it does appear as if the predictions and the true values trend positively.
+
+However, taking a deeper look, the model appears to be optimizing its loss function by tending to predict values near the center of the score distribution. As noted before, Pitchfork Review Scores tend to cluster near ~7.5, with little variation.
+
+That being said, the model tends to predict higher scores when the true value is greater than the mean, as well as predict lower scores when the true value is lower than mean.
+
+![image](images/Regression_1.png)
 
 *Please find an outline of the working directory below:*
 
