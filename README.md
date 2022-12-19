@@ -8,6 +8,20 @@ The combination of pithy, provocative language, seemingly unpredictable reviews,
 
 This project attempts to explore the sentiment of Pitchfork reviews, and how, if at all, it relates to the actual rating of an album (0-10) and how it may vary across other attributes, such as genre. This project also attempts to utilize sentiment analysis in a regression context, as a predictor of the ultimate rating of the album itself.
 
+### Dataset
+
+The dataset *(data/reviews.csv)* consists of 3,300 Pitchfork reviews scraped from [Pitchfork](https://pitchfork.com/) using *scraper.py*. It is represented in a .csv file, containing: 
+* album_title
+* artists
+* genres
+* authors
+* best_new *("Best New Album" and "Best New Reissue" are designations Pitchfork awards to its top rated albums)*
+* publish_datetime
+* review_link  
+* article *(the full Pitchfork review)*
+
+In *exploratory_sentiment_analysis.ipynb*, each review is given a variety of sentiment scores, which are saved to *data/reviews_sentiment.csv*, which is the dataset utilized in the regression analysis in *sentiment_in_regression.ipynb*.
+
 ### Findings: Exploratory Data & Sentiment Analysis
 
 **Exploratory Data Analysis**<br>*(exploratory_sentiment_analysis.ipynb)*
@@ -29,11 +43,11 @@ This project attempts to explore the sentiment of Pitchfork reviews, and how, if
 
 *Observations:*
 
-* There does not appear to be a strong relationship between VADER scores and Pitchfork Review Score. The lowest Pitchfork Review Scores have very high Compound VADER Scores, which might indicate that the VADER score is not picking up on context / figures of speech / irony in the worst-rated reviews.
-* It appears as if Experimental, Electronic and Jazz albums have lower Negative VADER Scores, which is consistent with them having greater Pitchfork Review Scores.
-* It appears as if Experimental and Jazz albums have greater Compound VADER Scores, which is consistent with them having greater Pitchfork Review Scores.
-* It appears as if Rap albums have lower Compound VADER Scores, which is consistent with them having lower Pitchfork Review Scores.
-* Metal albums appear to have greater Negative VADER Scores, as well as lower Compound VADER Scores; however, it did not appear that they have lower Pitchfork Review Scores. This could potentially be due to genre-specific language used in these album reviews that the NLTK-VADER cannot pick up on.
+* There does not appear to be a strong relationship between VADER scores and Pitchfork Review score. The lowest Pitchfork Review scores have very high Compound VADER Scores, which might indicate that the VADER score is not picking up on context / figures of speech / irony in the worst-rated reviews.
+* It appears as if Experimental, Electronic and Jazz albums have lower Negative VADER scores, which is consistent with them having greater Pitchfork Review scores.
+* It appears as if Experimental and Jazz albums have greater Compound VADER scores, which is consistent with them having greater Pitchfork Review scores.
+* It appears as if Rap albums have lower Compound VADER scores, which is consistent with them having lower Pitchfork Review scores.
+* Metal albums appear to have greater Negative VADER scores, as well as lower Compound VADER scores; however, it did not appear that they have lower Pitchfork Review scores. This could potentially be due to genre-specific language used in these album reviews that the NLTK-VADER cannot pick up on.
 
 ![image](images/VADER_1.png)
 
@@ -48,16 +62,16 @@ This project attempts to explore the sentiment of Pitchfork reviews, and how, if
 
 *Observations:*
 
-* There does not appear to be a strong relationship between Polarity/Subjectivity scores and Pitchfork Review Score. However, the lowest Pitchfork Review Scores are not associated with the highest Polarity scores, unlike the Compound VADER scores.
-* It appears as if Folk/Country and Jazz albums have greater Polarity Scores, which is consistent with them having greater Pitchfork Review Scores.
-* It appears as if Rap albums have lower Polarity Scores, which is consistent with them having lower Pitchfork Review Scores.
-* Metal albums appear to have lower Polarity Scores, however it does not appear that they have lower Pitchfork Review Scores. This could potentially be due to genre-specific language used in these album reviews that TextBlob cannot pick up on, similarly to NLTK.
-* There does not appear to be meaningful difference in Subjectivity Score across genres.
+* There does not appear to be a strong relationship between Polarity/Subjectivity scores and Pitchfork Review score. However, the lowest Pitchfork Review scores are not associated with the highest Polarity scores, unlike the Compound VADER scores.
+* It appears as if Folk/Country and Jazz albums have greater Polarity Scores, which is consistent with them having greater Pitchfork Review scores.
+* It appears as if Rap albums have lower Polarity scores, which is consistent with them having lower Pitchfork Review scores.
+* Metal albums appear to have lower Polarity scores, however it does not appear that they have lower Pitchfork Review scores. This could potentially be due to genre-specific language used in these album reviews that TextBlob cannot pick up on, similarly to NLTK.
+* There does not appear to be meaningful difference in Subjectivity score across genres.
 
 ![image](images/TextBlob_1.png)
 
-* There appears to be some quadratic association between Sentivity and Polarity scores. As a review takes on a more positive or negative Polarity Score, its Subjectivity Score also seems to increase. That is, opinionated language appears to be associated with polarizing language.
-* This relatinoship is visually corroborated by looking as how Subjectivity Score trends with Neutral VADER Score. As an article is more neutral, it is also less subjective
+* There appears to be some quadratic association between Sentivity and Polarity scores. As a review takes on a more positive or negative Polarity score, its Subjectivity score also seems to increase. That is, opinionated language appears to be associated with polarizing language.
+* This relatinoship is visually corroborated by looking as how Subjectivity score trends with Neutral VADER score. As an article is more neutral, it is also less subjective
 
 ![image](images/TextBlob_2.png)
 
@@ -69,11 +83,11 @@ This project attempts to explore the sentiment of Pitchfork reviews, and how, if
 
 *Observations:*
 
-* The Compound Flair Score seems to be very deterministic, more often returning values < -0.5 or > +0.5. Compared to the other two approaches, the Flair Score seems to find far less neutral language.
+* The Compound Flair Score seems to be very deterministic, more often returning values < -0.5 or > +0.5. Compared to the other two approaches, the Flair score seems to find far less neutral language.
 * The Flair Score successfully gives lower scores to the lowest rated albums, as compared to NLTK. This may be explained by the pre-trained model that can better understand context, as words are considered within a vector space.
-* It appears as if Experimental, Folk/Country and Jazz albums have greater Compound Flair Scores, greater Positive Flair Scores, and lower Negative Flair Scores, which is all consistent with them having greater Pitchfork Review Scores.
-* It appears as if Rock albums have lower Compound Flair Scores, lower Positive Flair Scores, and greater Negative Flair Scores, which is all inconsistent with them having greater Pitchfork Review Scores.
-* It appears as if Rap albums have lower Compound Flair Scores, lower Positive Flair Scores, and greater Negative Flair Scores, which is all consistent with them having greater Pitchfork Review Scores.
+* It appears as if Experimental, Folk/Country and Jazz albums have greater Compound Flair scores, greater Positive Flair scores, and lower Negative Flair scores, which is all consistent with them having greater Pitchfork Review scores.
+* It appears as if Rock albums have lower Compound Flair scores, lower Positive Flair scores, and greater Negative Flair scores, which is all inconsistent with them having greater Pitchfork Review scores.
+* It appears as if Rap albums have lower Compound Flair scores, lower Positive Flair scores, and greater Negative Flair scores, which is all consistent with them having greater Pitchfork Review scores.
 
 ![image](images/Flair_1.png)
 
@@ -111,7 +125,7 @@ We will also implenent a new feature, which takes into account each authors aver
   * 'gamma': 0.1
   * 'colsample_bytree': 0.1
 
-**CatBoost Regressor**<br>*(sentiment_in_regression.ipynb)*
+**CatBoost Regressor**
 
 *We fit 5 folds for each of 20 candidates, totalling 100 fits.*
 * **Best RMSE**: 0.64037337380257
@@ -124,7 +138,7 @@ We will also implenent a new feature, which takes into account each authors aver
 
 With each model having faily consistent performance, from an RMSE perspective, we then looked into an ensemble regressor, which yielded the the best performance
 
-**Ensemble Regressor**<br>*(sentiment_in_regression.ipynb)*
+**Ensemble Regressor**
 
 * We fit 5 folds for each of 20 candidates, totalling 100 fits.*
 * **Best RMSE**: 0.6388685732071409
@@ -134,7 +148,7 @@ With each model having faily consistent performance, from an RMSE perspective, w
 
 The test RMSE (for the Ensemble Regressor) was **~0.68**, and it does appear as if the predictions and the true values trend positively.
 
-However, taking a deeper look, the model appears to be optimizing its loss function by tending to predict values near the center of the score distribution. As noted before, Pitchfork Review Scores tend to cluster near ~7.5, with little variation.
+However, taking a deeper look, the model appears to be optimizing its loss function by tending to predict values near the center of the score distribution. As noted before, Pitchfork Review scores tend to cluster near ~7.5, with little variation.
 
 That being said, the model tends to predict higher scores when the true value is greater than the mean, as well as predict lower scores when the true value is lower than mean.
 
