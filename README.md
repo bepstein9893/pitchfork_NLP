@@ -13,9 +13,23 @@ This project attempts to explore the sentiment of Pitchfork reviews, and how, if
 **Exploratory Data Analysis**<br>*(exploratory_sentiment_analysis.ipynb)*
 
 * While the Pitchfork Review Scores appear to be normally distributed around ~7.5 with little variance, there is greater variance in scores within genres.
-* However, Rock, Experimental, Folk/Country and Jazz appear to have greater median scores, while Rap appears to have a lower median score.
+* However, Rock, Experimental, Folk/Country, Electronic and Jazz appear to have greater median scores, while Rap appears to have a lower median score.
 
 ![image](images/EDA_1.png)
+
+
+**Sentiment Analysis: NLTK - VADER (Valence Aware Dictionary and sEntiment Reasoner)**<br>*(exploratory_sentiment_analysis.ipynb)*
+
+(DESCRIPTION OF NLTK HERE)
+
+* There does not appear to be a strong relationship between VADER scores and Pitchfork Review Score. The lowest Pitchfork Review Scores have very high Compound VADER Scores, which might indicate that the VADER score is not picking up on context / figures of speech / irony in the worst-rated reviews.
+* It appears as if Experimental, Electronic and Jazz albums have lower Negative VADER Scores, which is consistent with them having greater Pitchfork Review Scores.
+* It appears as if Experimental and Jazz albums have greater Compound VADER Scores, which is consistent with them having greater Pitchfork Review Scores.
+* It appears as if Rap albums have lower Compound VADER Scores, which is consistent with them having lower Pitchfork Review Scores.
+* Metal albums appear to have greater Negative VADER Scores, as well as lower Compound VADER Scores; however, it did not appear that they have lower Pitchfork Review Scores. This could potentially be do to genre-specific language used in these album reviews that the NLTK-VADER cannot pick up on.
+
+![image](images/VADER_1.png)
+
 
 *Please find an outline of the working directory below:*
 
