@@ -157,7 +157,7 @@ That being said, the model tends to predict higher scores when the true value is
 ### Next Steps
 
 * Exploring additional sentiment analysis packages/transformers that can better grasp textual context in large bodies of text 
-* Incorporating average genre sentiment score, to condition each prediction on the "tone" of a typical ablum review within its genre
+* Incorporating average genre sentiment score, to condition each prediction on the "tone" of a typical album review within its genre
 
 
 *Please find an outline of the working directory below:*
