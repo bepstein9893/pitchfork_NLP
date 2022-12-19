@@ -39,7 +39,14 @@ This project attempts to explore the sentiment of Pitchfork reviews, and how, if
 
 **Sentiment Analysis: TextBlob - Polarity & Subjectivity**<br>*(exploratory_sentiment_analysis.ipynb)*
 
-(DESCRIPTION OF TextBlob HERE)
+*This package also relies on a rules-based sentiment analyzer and has the same shortcomings as the package from NLTK. However, this package also offers a score related to the subjectivity of a text.*
+
+*The package returns a polarity and subjectivity score.*
+
+* **polarity**: value between -1 and +1
+* **subjectivity**: value between 0 and 1
+
+*Observations:*
 
 * There does not appear to be a strong relationship between Polarity/Subjectivity scores and Pitchfork Review Score. However, the lowest Pitchfork Review Scores are not associated with the highest Polarity scores, unlike the Compound VADER scores.
 * It appears as if Folk/Country and Jazz albums have greater Polarity Scores, which is consistent with them having greater Pitchfork Review Scores.
