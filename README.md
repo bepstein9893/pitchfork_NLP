@@ -47,6 +47,18 @@ This project attempts to explore the sentiment of Pitchfork reviews, and how, if
 
 ![image](images/TextBlob_2.png)
 
+**Flair - Pre-trained Embedding-based Model**<br>*(exploratory_sentiment_analysis.ipynb)*
+
+(DESCRIPTION OF Flair HERE)
+
+* The Compound Flair Score seems to be very deterministic, more often returning values < -0.5 or > +0.5. Compared to the other two approaches, the Flair Score seems to find far less neutral language.
+* The Flair Score successfully gives lower scores to the lowest rated albums, as compared to NLTK. This may be explained by the pre-trained model that can better understand context, as words are considered within a vectorized space.
+* It appears as if Experimental, Folk/Country and Jazz albums have greater Compound Flair Scores, greater Positive Flair Scores, and lower Negative Flair Scores, which is all consistent with them having greater Pitchfork Review Scores.
+* It appears as if Rock albums have lower Compound Flair Scores, lower Positive Flair Scores, and greater Negative Flair Scores, which is all inconsistent with them having greater Pitchfork Review Scores.
+* It appears as if Rap albums have lower Compound Flair Scores, lower Positive Flair Scores, and greater Negative Flair Scores, which is all consistent with them having greater Pitchfork Review Scores.
+
+![image](images/Flair_1.png)
+
 *Please find an outline of the working directory below:*
 
 ``` bash
