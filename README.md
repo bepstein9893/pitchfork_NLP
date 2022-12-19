@@ -6,6 +6,10 @@ The combination of pithy, provocative language, seemingly unpredictable reviews,
 
 This project attempts to explore the sentiment of Pitchfork reviews, and how, if at all, it relates to the actual rating of an album (0-10) and how it may vary across other attributes, such as genre. This project also attempts to utilize sentiment analysis in a regression context, as a predictor of the ultimate rating of the album itself.
 
+### Findings: 
+
+**Exploratory Data Analysis** (*exploratory_sentiment_analysis.ipynb*)
+
 ![image](images/EDA_1.png)
 
 *Please find an outline of the working directory below:*
