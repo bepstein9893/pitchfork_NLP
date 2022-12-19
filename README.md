@@ -16,7 +16,7 @@ This project attempts to explore the sentiment of Pitchfork reviews, and how, if
 ├── data
 │   ├── reviews.csv                         # raw data from Pitchfork (including full reviews)
 │   ├── reviews_sentiment.csv               # review sentiment scores from exploratory data and sentiment analysis  
-├── scraper.py                              # a script leveraging BeautifulSoup and Selenium WebDriver to scrape the reviews 
+├── scraper.py                              # script leveraging BeautifulSoup and Selenium WebDriver to scrape the reviews 
 ├── exploratory_sentiment_analysis.ipynb    # EDA and sentiment analysis 
-├── sentiment_in_regression.ipynb           # Using sentiment scores in a regression context to predict ratings
+├── sentiment_in_regression.ipynb           # sentiment scores in a regression context to predict ratings
 ```
