@@ -42,6 +42,11 @@ This project attempts to explore the sentiment of Pitchfork reviews, and how, if
 
 ![image](images/TextBlob_1.png)
 
+* There appears to be some quadratic association between Sentivity and Polarity scores. As a review takes on a more positive or negative Polarity Score, its Subjectivity Score also seems to increase. That is, opinionated language appears to be associated with polarizing language.
+* This relatinoship is visually corroborated by looking as how Subjectivity Score trends with Neutral VADER Score. As an article is more neutral, it is also less subjective
+
+![image](images/TextBlob_2.png)
+
 *Please find an outline of the working directory below:*
 
 ``` bash
