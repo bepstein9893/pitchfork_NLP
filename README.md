@@ -43,7 +43,7 @@ In *exploratory_sentiment_analysis.ipynb*, each review is given a variety of sen
 
 *Observations:*
 
-* There does not appear to be a strong relationship between VADER scores and Pitchfork Review score. The lowest Pitchfork Review scores have very high Compound VADER Scores, which might indicate that the VADER score is not picking up on context / figures of speech / irony in the worst-rated reviews.
+* There does not appear to be a strong relationship between VADER scores and Pitchfork Review score. The lowest Pitchfork Review scores have very high Compound VADER scores, which might indicate that the VADER score is not picking up on context / figures of speech / irony in the worst-rated reviews.
 * It appears as if Experimental, Electronic and Jazz albums have lower Negative VADER scores, which is consistent with them having greater Pitchfork Review scores.
 * It appears as if Experimental and Jazz albums have greater Compound VADER scores, which is consistent with them having greater Pitchfork Review scores.
 * It appears as if Rap albums have lower Compound VADER scores, which is consistent with them having lower Pitchfork Review scores.
@@ -65,13 +65,13 @@ In *exploratory_sentiment_analysis.ipynb*, each review is given a variety of sen
 * There does not appear to be a strong relationship between Polarity/Subjectivity scores and Pitchfork Review score. However, the lowest Pitchfork Review scores are not associated with the highest Polarity scores, unlike the Compound VADER scores.
 * It appears as if Folk/Country and Jazz albums have greater Polarity Scores, which is consistent with them having greater Pitchfork Review scores.
 * It appears as if Rap albums have lower Polarity scores, which is consistent with them having lower Pitchfork Review scores.
-* Metal albums appear to have lower Polarity scores, however it does not appear that they have lower Pitchfork Review scores. This could potentially be due to genre-specific language used in these album reviews that TextBlob cannot pick up on, similarly to NLTK.
-* There does not appear to be meaningful difference in Subjectivity score across genres.
+* Metal albums appear to have lower Polarity scores, however it does not appear that they have lower Pitchfork Review scores. This could potentially be due to genre-specific language used in these album reviews that TextBlob cannot pick up on, similar to NLTK.
+* There does not appear to be a meaningful difference in Subjectivity score across genres.
 
 ![image](images/TextBlob_1.png)
 
 * There appears to be some quadratic association between Sentivity and Polarity scores. As a review takes on a more positive or negative Polarity score, its Subjectivity score also seems to increase. That is, opinionated language appears to be associated with polarizing language.
-* This relatinoship is visually corroborated by looking as how Subjectivity score trends with Neutral VADER score. As an article is more neutral, it is also less subjective
+* This relationship is visually corroborated by looking as how Subjectivity score trends with Neutral VADER score. As an article is more neutral, it is also less subjective
 
 ![image](images/TextBlob_2.png)
 
@@ -94,13 +94,13 @@ In *exploratory_sentiment_analysis.ipynb*, each review is given a variety of sen
 ### Findings: Regression
 *(sentiment_in_regression.ipynb)
 
-The goal of this regression analysis to generate a high-performing prediction. As each sentiment analysis package had advantages and disadvantages, and some found "plausible" relationships between reviews and ratings, with respect to genres, while others did not (or found "implausible" relationships), we will train and tune the hyperparameters of regressors that are more apt to handle large sets of features and the relationships between them. Namely,
+The goal of this regression analysis is to generate a high-performing prediction of Pitchfork ratings using sentiment scores. As each sentiment analysis package had advantages and disadvantages, and some found "plausible" relationships between reviews and ratings, with respect to genres, while others did not (or found "implausible" relationships), we will train and tune the hyperparameters of regressors that are more apt to handle large sets of features and the relationships between them. Namely,
 
 * **Random Forest Regressor** (sklearn)
 * **XGBoost Regressor** (xgboost)
-* **CatBoostRegressor** (catboost)
+* **CatBoost Regressor** (catboost)
 
-We will also implenent a new feature, which takes into account each authors average sentiment scores, as to condition each prediction not only on the sentiment of the review, but also on the general sentinment of an author. 
+We will also implenent a new feature, which takes into account each authors average sentiment scores, as to condition each prediction not only on the sentiment of the review, but also on the general sentinment of an author. We will also include genres as features. 
 
 **Random Forest Regressor**
 
@@ -136,7 +136,7 @@ We will also implenent a new feature, which takes into account each authors aver
   * 'depth': 2
   * 'border_count': 50
 
-With each model having faily consistent performance, from an RMSE perspective, we then looked into an ensemble regressor, which yielded the the best performance
+With each model having faily consistent performance, from an RMSE perspective, we then looked into an ensemble regressor, which yielded the the best performance.
 
 **Ensemble Regressor**
 
@@ -146,13 +146,19 @@ With each model having faily consistent performance, from an RMSE perspective, w
 
 **Test, Observations, and Conclusions**<br>*(sentiment_in_regression.ipynb)*
 
-The test RMSE (for the Ensemble Regressor) was **~0.68**, and it does appear as if the predictions and the true values trend positively.
+The test RMSE (for the Ensemble Regressor) was **~0.68**, and it does appear that the predicted values and the true values trend positively.
 
 However, taking a deeper look, the model appears to be optimizing its loss function by tending to predict values near the center of the score distribution. As noted before, Pitchfork Review scores tend to cluster near ~7.5, with little variation.
 
 That being said, the model tends to predict higher scores when the true value is greater than the mean, as well as predict lower scores when the true value is lower than mean.
 
 ![image](images/Regression_1.png)
+
+### Next Steps
+
+* Exploring additional sentiment analysis packages/transformers that can better grasp textual context in large bodies of text 
+* Incorporating average genre sentiment score, to condition each prediction on the "tone" of a typical ablum review within its genre
+
 
 *Please find an outline of the working directory below:*
 
