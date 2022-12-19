@@ -12,7 +12,7 @@ This project attempts to explore the sentiment of Pitchfork reviews, and how, if
 
 *Please find an outline of the working directory below:*
 
-├── data    
+├── data <br>
 │   ├── reviews.csv                         # raw data from Pitchfork (including full reviews)
 │   ├── reviews_sentiment.csv               # review sentiment scores from exploratory data and sentiment analysis  
 ├── scraper.py                              # a script leveraging BeautifulSoup and Selenium WebDriver to scrape the reviews 
