@@ -40,7 +40,7 @@ This project attempts to explore the sentiment of Pitchfork reviews, and how, if
 * Metal albums appear to have lower Polarity Scores, however it does not appear that they have lower Pitchfork Review Scores. This could potentially be due to genre-specific language used in these album reviews that TextBlob cannot pick up on, similarly to NLTK.
 * There does not appear to be meaningful difference in Subjectivity Score across genres.
 
-![image](images/textblob_1.png)
+![image](images/TextBlob_1.png)
 
 *Please find an outline of the working directory below:*
 
